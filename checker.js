@@ -4,7 +4,7 @@
 // @description     ニコニコ静画のコメント欄を色付けすることでレス先をわかりやすくします
 // @author          sotoba
 // @match           http://seiga.nicovideo.jp/seiga/im*
-// @version         1.1.1.20181103
+// @version         1.1.2.20181103
 // @license         MIT License
 // @grant           none
 // ==/UserScript==
@@ -122,7 +122,7 @@
                 // pattern: >12345,>> 12345、＞１２３４５...
                 const regResult = str.match(/^(&gt;)+([ 　]*)([0-9０-９]*).*/)
                 const regResult2 = str.match(/^(＞)+([ 　]*)([0-9０-９]*).*/)
-                if (regResult[1].length > 0) {
+                if (regResult !==null && regResult[1].length > 0) {
                     const target = regResult[3].replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
                     const result = {
                         isResonse: true,
@@ -131,7 +131,7 @@
                         stringLen: regResult[1].length + regResult[2].length + regResult[3].length
                     }
                     return result
-                } else if (regResult2[1].length > 0) {
+                } else if (regResult2 !==null &&regResult2[1].length > 0) {
                     const target = regResult2[3].replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
                     const result = {
                         isResonse: true,
