@@ -1,0 +1,1 @@
+# nicoseiga-res-checker
